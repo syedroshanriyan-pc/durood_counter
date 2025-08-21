@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Durood Counter - Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- ✅ Mobile scaling -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
+      color: #fff;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 20px;
+    }
+
+    .logout-btn {
+      background: crimson;
+      border: none;
+      color: #fff;
+      font-weight: bold;
+      padding: 8px 18px;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+    .logout-btn:hover {
+      background: #e60000;
+      transform: scale(1.05);
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.08);
+      border: none;
+      border-radius: 18px;
+      box-shadow: 0px 10px 25px rgba(0,0,0,0.6);
+      padding: 30px;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .glitter-text {
+      font-size: 2rem;
+      font-weight: bold;
+      background: linear-gradient(90deg, #ffd700, #ffcc00, #fff176, #ffd700);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 300% auto;
+      animation: shimmer 3s linear infinite;
+    }
+    @keyframes shimmer {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    .progress {
+      height: 28px;
+      border-radius: 20px;
+      overflow: hidden;
+      background-color: #333;
+      margin: 20px 0;
+    }
+    .progress-bar {
+      background: linear-gradient(90deg, #ffd700, #ffcc00, #ffc107);
+      font-weight: bold;
+      color: #000;
+      text-shadow: 1px 1px 2px rgba(255,255,255,0.6);
+      animation: glow 2s infinite alternate;
+    }
+    @keyframes glow {
+      from { box-shadow: 0 0 5px gold; }
+      to { box-shadow: 0 0 20px goldenrod; }
+    }
+
+    .count-box {
+      font-size: 1.2rem;
+      margin: 15px 0;
+      padding: 10px;
+      border-radius: 12px;
+      background: rgba(225, 248, 50, 0.774);
+      box-shadow: inset 0 0 8px rgba(186, 165, 43, 0.763);
+    }
+
+    .btn-custom {
+      background: goldenrod;
+      border: none;
+      color: #000;
+      font-weight: bold;
+      padding: 12px 24px;
+      border-radius: 12px;
+      transition: 0.3s;
+    }
+    .btn-custom:hover {
+      background: gold;
+      transform: scale(1.05);
+    }
+
+    .timer {
+      font-size: 1rem;
+      margin-top: 20px;
+      color: #ddd;
+    }
+
+    footer {
+      margin-top: 40px;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+    }
+    footer a {
+      color: #25D366;
+      font-weight: bold;
+      text-decoration: none;
+      margin-left: 6px;
+    }
+    footer a:hover { text-decoration: underline; }
+
+    /* 📱 Mobile responsiveness */
+    @media (max-width: 768px) {
+      body { padding: 10px; }
+      .card { padding: 20px; width: 100%; }
+      .glitter-text { font-size: 1.5rem; }
+      h3 { font-size: 1.2rem; }
+      .count-box { font-size: 1rem; padding: 8px; }
+      .progress { height: 22px; }
+      .btn-custom { width: 100%; }
+      footer { font-size: 0.85rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <a href="/logout" class="logout-btn">Logout</a>
+  </div>
+
+  <div class="card">
+    <h1 class="glitter-text">🌙 Target: {{ target }}</h1>
+
+    <h6 class="mt-3 mb-4 text-light" style="line-height:1.6; font-style: italic;">
+      For every Durood recited, Allah sends ten blessings, erases ten sins, 
+      and elevates the person's rank ten times, and results in the nearness 
+      of the Prophet ﷺ on the Day of Judgment.
+    </h6>
+
+    <h3 class="mb-4">Welcome, {{ session.fullname }}</h3>
+
+    <div class="progress">
+      <div class="progress-bar" role="progressbar"
+           style="width: {{ progress }}%;"
+           aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100">
+        {{ progress }}%
+      </div>
+    </div>
+
+    <div class="count-box">📿 Total Completed: <span class="gold-text">{{ total }}</span></div>
+    <div class="count-box">🕌 Remaining: <span class="gold-text">{{ remaining }}</span></div>
+    <div class="count-box">🙌 Your Contribution: <span class="gold-text">{{ my_total }}</span></div>
+
+    <form method="POST" action="/add" class="my-4">
+      <input type="number" name="count" placeholder="Enter your durood count" required class="form-control mb-3">
+      <button type="submit" class="btn-custom">➕ Add My Count</button>
+    </form>
+
+    <div class="timer">
+      ⏳ Time left for event: <span id="countdown"></span>
+    </div>
+  </div>
+
+  <footer>
+    <p>📩 Contact us: <a href="mailto:syedroshanriyan.pc@gmail.com">syedroshanriyan.pc@gmail.com</a> </p>
+    <p>
+      <i class="fab fa-whatsapp"></i>
+      <a href="link_here" target="_blank">Join our WhatsApp Group</a>
+    </p>
+  </footer>
+
+  <script>
+    const eventDate = new Date("{{ event_date }}").getTime();
+    const countdownEl = document.getElementById("countdown");
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = eventDate - now;
+
+      if (distance < 0) {
+        countdownEl.innerHTML = "🎉 Event Started!";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>

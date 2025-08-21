@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: url('/static/bg.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #f7f7f7;
+  margin: 0;
+}
+
+.navbar { box-shadow: 0 6px 18px rgba(0,0,0,0.6); }
+.card { border-radius: 14px; }
+.timer { color: #a6ff8b; font-weight:600; }
+
+input, .form-control {
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.btn-warning { background: linear-gradient(90deg,#FFD700,#FFA500); border: none; color: #000; }
+.btn-success { background: #28a745; border: none; }
+
+.progress { background: rgba(255,255,255,0.06); }
+.progress-bar { transition: width 0.7s ease; }
+
+/* 📱 Mobile Responsiveness */
+@media (max-width: 768px) {
+  body {
+    padding: 15px;
+    text-align: center;
+  }
+
+  .card {
+    padding: 20px;
+    margin: 10px auto;
+    width: 100% !important;
+  }
+
+  h1, h2, h3 {
+    font-size: 1.4rem !important;
+  }
+
+  .progress {
+    height: 24px;
+  }
+
+  .count-box {
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  footer {
+    font-size: 0.9rem;
+    padding: 15px;
+  }
+
+  .btn, .btn-custom {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
