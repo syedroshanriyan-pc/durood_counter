@@ -19,7 +19,7 @@ users = db["users"]
 recitations = db["recitations"]
 
 TARGET = 1000000
-EVENT_DATE = datetime(2025, 9, 5, 12, 30, 0)
+EVENT_DATE = datetime(2025, 9, 5, 5, 0, 0)
 
 
 @app.route("/")
@@ -119,5 +119,6 @@ def logout():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
 
 
