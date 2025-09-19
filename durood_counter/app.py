@@ -14,12 +14,12 @@ app.secret_key ="supersecretkey"
 app.permanent_session_lifetime = timedelta(days=30)
 
 client = MongoClient(MONGO_URI)
-db = client["darood_db"]
+db = client["darood_11_db"]
 users = db["users"]
 recitations = db["recitations"]
 
-TARGET = 1000000
-EVENT_DATE = datetime(2025, 9, 5, 5, 0, 0)
+TARGET = 1100000
+EVENT_DATE = datetime(2025, 10, 3, 18, 0, 0)
 
 
 @app.route("/")
@@ -119,6 +119,3 @@ def logout():
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-
-
