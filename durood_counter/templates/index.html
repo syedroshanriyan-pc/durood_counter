@@ -6,135 +6,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-<style>
-  body {
-    background: #2f3840; /* ✅ bluish white (AliceBlue) */
-    color: #000;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    text-align: center;
-    padding: 20px;
-  }
-  .top-bar { display: flex; justify-content: flex-end; margin-bottom: 20px; }
-  .logout-btn {
-    background: crimson; border: none; color: #fff; font-weight: bold;
-    padding: 8px 18px; border-radius: 10px; transition: 0.3s;
-  }
-  .logout-btn:hover { background: #e60000; transform: scale(1.05); }
-  .card {
-    background: skyblue; /* ✅ sky blue card background */
-    border: none; border-radius: 18px;
-    box-shadow: 0px 10px 25px rgba(0,0,0,0.3);
-    padding: 30px; max-width: 700px; margin: auto;
-  }
-  .glitter-text {
-    font-size: 2rem; font-weight: bold;
-    background: linear-gradient(90deg, #ffd700, #ffcc00, #fff176, #ffd700);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    background-size: 300% auto; animation: shimmer 3s linear infinite;
-  }
-  @keyframes shimmer { 
-    0% { background-position: 0% 50%; } 
-    100% { background-position: 100% 50%; } 
-  }
-  
-  .progress {
-    height: 28px;
-    border-radius: 20px;
-    overflow: hidden;
-    background-color: #f5f5f5;
-    margin: 20px 0;
-  }
-  .progress-bar {
-    background: #d1e231; /* pear green */
-    font-weight: bold;
-    color: #000;
-    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.6);
-    animation: glow 2s infinite alternate;
-  }
-  @keyframes glow {
-    from { box-shadow: 0 0 6px #cddc39; }
-    to   { box-shadow: 0 0 18px #9acd32; }
-  }
-
-  .count-box {
-    font-size: 1.2rem; margin: 15px 0; padding: 10px; border-radius: 12px;
-    background: #b3d9ff; /* pale blue */
-    color: #003366;
-    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1);
-    border: 2px solid black;
-  }
-  .btn-custom {
-    background: navy;
-    border: none; color: #fff; font-weight: bold;
-    padding: 12px 24px; border-radius: 12px; transition: 0.3s;
-  }
-  .btn-custom:hover { background: #000080; transform: scale(1.05); }
-
-  input[name="count"] {
-    background: #fff;
-    border: 2px solid black !important;
-    border-radius: 8px;
-    padding: 10px;
-  }
-
-  footer {
-    margin-top: 30px;
-    padding: 15px;
-    background: rgba(105, 148, 187, 0.85);
-    border-radius: 12px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-    text-align: center;
-  }
-  footer a {
-    color: navy;
-    font-weight: bold;
-    text-decoration: none;
-  }
-  footer a:hover { text-decoration: underline; }
-  footer .fa-whatsapp { color: #25D366; margin-right: 8px; }
-
-  .timer {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-top: 20px;
-    color: #004d00;
-  }
-</style>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <div class="top-bar">
-    <a href="/logout" class="logout-btn">Logout</a>
+  <div class="top-bar text-end p-3">
+    <a href="/logout" class="btn btn-danger btn-sm fw-bold">Logout</a>
   </div>
 
-  <div class="card">
+  <div class="card text-center mx-auto p-4">
     <h1 class="glitter-text">🌙 Target: {{ target }}</h1>
-    <h6 class="mt-3 mb-2" style="line-height:1.6; font-style: italic; color:#002147;">
-      إِنَّ ٱللَّهَ وَمَلَـٰٓئِكَتَهُۥ يُصَلُّونَ عَلَى ٱلنَّبِىِّۚ يَـٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُواْ صَلُّواْ عَلَيۡهِ وَسَلِّمُواْ تَسۡلِيمًا -٥٦  <br> Be shak Allah aur Farishte Nabi par Durood bhejte hain. Aey Imaan walon ! Tum bhi un par Durood bhejte raho aur (unhe) khoob salam bhejte raho.<span style="font-weight: 200;"><i> [ Kanzul Iman ] </i></span>
+    <h6 class="mt-3 mb-2" style="line-height:1.6; font-style: italic;">
+      إِنَّ ٱللَّهَ وَمَلَـٰٓئِكَتَهُۥ يُصَلُّونَ عَلَى ٱلنَّبِىِّۚ يَـٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُواْ صَلُّواْ عَلَيۡهِ وَسَلِّمُواْ تَسۡلِيمًا -٥٦  
+      <br>Be shak Allah aur Farishte Nabi par Durood bhejte hain. Aey Imaan walon! Tum bhi un par Durood bhejte raho aur (unhe) khoob salam bhejte raho. 
+      <em>[Kanzul Iman]</em>
     </h6> 
-          <em>- Quran (33:56)</em>
-    
+    <em>- Quran (33:56)</em>
 
-    <div class="progress">
+    <div class="progress mt-4">
       <div class="progress-bar" role="progressbar"
            style="width: {{ progress }}%;" aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100">
         {{ progress }}%
       </div>
     </div>
 
-    <div class="count-box">📿 Total Completed: <span>{{ total }}</span></div>
+    <div class="count-box mt-3">📿 Total Completed: <span>{{ total }}</span></div>
     <div class="count-box">🕌 Remaining: <span>{{ remaining }}</span></div>
     <div class="count-box">🙌 Your Contribution: <span>{{ my_total }}</span></div>
 
     <form method="POST" action="/add" class="my-4">
       <input type="number" name="count" placeholder="Enter your durood count" required class="form-control mb-3">
-      <button type="submit" class="btn-custom">➕ Add My Count</button>
+      <button type="submit" class="btn btn-custom">➕ Add My Count</button>
     </form>
 
     <div class="timer">⏳ Time left for event: <span id="countdown"></span></div>
   </div>
 
   <footer>
-    <p>📩 <b>Contact us:  </b> <a href=" mailto:syedroshanriyan.pc@gmail.com">syedroshanriyan.pc@gmail.com</a></p>
+    <p>📩 <b>Contact us:</b> <a href="mailto:syedroshanriyan.pc@gmail.com">syedroshanriyan.pc@gmail.com</a></p>
     <p><i class="fab fa-whatsapp"></i>
       <a href="https://chat.whatsapp.com/DH7lRFHXKcm1akcRmWUq5U?mode=ac_t" target="_blank">Join our WhatsApp Group</a>
     </p>
@@ -142,7 +50,6 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    // Countdown
     const eventDate = new Date("{{ event_date }}").getTime();
     const countdownEl = document.getElementById("countdown");
     function updateCountdown() {
