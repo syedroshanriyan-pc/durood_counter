@@ -18,7 +18,7 @@ db = client["darood_rajab"]
 users = db["users"]
 recitations = db["recitations"]
 
-TARGET = 813000
+TARGET = 814000
 EVENT_DATE = datetime(2025, 12, 26, 18, 0, 0)
 
 
@@ -119,4 +119,5 @@ def logout():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
 
